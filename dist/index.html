@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <title>Design Theory — Studio Belajar Desain Grafis</title>
+  <meta name="description" content="Pelajari Gestalt, warna, hierarki, focal point, tipografi, dan komposisi lewat eksperimen visual, latihan Canva dan Figma, serta kuis interaktif.">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Langsung ke materi</a>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="brand-symbol" aria-hidden="true">d<span>t</span></span><span>design<span class="brand-light">theory</span><small>STUDIO BELAJAR DESAIN GRAFIS</small></span></a>
+    <nav aria-label="Navigasi utama"><a class="active" href="#explore">Eksplorasi <span>08</span></a><a href="#practice">Studio praktik</a><a href="#sources">Sumber belajar</a></nav>
+    <span class="edition">FIELD NOTES <b>VOL. 01</b></span>
+  </header>
+  <main id="main">
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow"><span class="tiny-cross">✳</span> AMATI. PAHAMI. TERAPKAN.</p><h1 id="page-title">Di balik desain yang baik,<br>ada <em>alasan.</em></h1><p class="intro-copy">Latih mata, pahami prinsipnya. Jelajahi teori desain grafis<br class="desktop"> dan terapkan pada karya di Canva atau Figma.</p></div>
+      <div class="intro-aside"><span class="outline-star" aria-hidden="true">✳</span><p>Teori jadi lebih jelas<br>ketika kamu <strong>mencobanya.</strong></p><a href="#explore">Pilih satu prinsip untuk mulai <span>↙</span></a></div>
+    </section>
+    <section id="explore" class="explore" aria-labelledby="explore-title">
+      <div class="section-bar"><div><span class="section-no">01 /</span><h2 id="explore-title">Atlas prinsip desain</h2></div><span class="section-hint">Klik kartu. Ubah visualnya. Temukan polanya.</span></div>
+      <div id="theory-grid" class="theory-grid"></div>
+      <div class="journey"><div><span class="journey-icon" aria-hidden="true">◒</span><span><b>Perjalanan belajarmu</b><small id="progress-caption">Progres tersimpan di browser ini.</small></span></div><div class="journey-progress"><span id="progress-label" aria-live="polite">0 dari 8 prinsip selesai</span><progress id="progress" max="8" value="0" aria-label="Prinsip selesai"></progress></div><button id="continue" class="text-button">Mulai belajar <span>↗</span></button></div>
+      <p id="storage-notice" class="storage-notice" role="status" hidden></p>
+    </section>
+    <section class="practice" id="practice" aria-labelledby="practice-title">
+      <div class="practice-intro"><p class="eyebrow">02 / STUDIO PRAKTIK</p><h2 id="practice-title">Satu poster.<br><em>Banyak keputusan.</em></h2><p>Terapkan prinsip yang baru dipelajari ke sebuah poster pameran. Mulai dengan versi ramai, lalu susun ulang agar pesannya jelas.</p><div class="tool-switch" role="group" aria-label="Pilih alat untuk latihan"><button data-tool="Canva" aria-pressed="true">Canva</button><button data-tool="Figma" aria-pressed="false">Figma</button></div><ol id="practice-steps"></ol><p class="small-note">Latihan mandiri · ±20 menit · Gunakan bentuk dan font yang tersedia di akunmu.</p></div>
+      <div class="practice-preview"><div class="preview-label"><span>STUDI KOMPOSISI / 001</span><button id="poster-toggle" aria-pressed="false">Lihat sebelum <span>↔</span></button></div><div class="poster" id="poster"><span class="poster-meta">STUDIO TERBUKA — 2026</span><div class="poster-orbit" aria-hidden="true"><span></span><span></span><span></span></div><h3>RUANG<br><span>RUPA.</span></h3><div class="poster-bottom"><p>Pameran desain<br>& eksplorasi visual</p><p>24—26 OKT<br>10.00—18.00</p></div></div><p id="poster-caption">Sesudah: satu judul dominan, satu aksen, dan tepi teks yang sejajar.</p></div>
+      <div class="checklist"><h3>Sebelum mengekspor</h3><p>Periksa karya pada ukuran tampil sebenarnya.</p><label><input type="checkbox" data-check="message"> Pesan utama terbaca lebih dulu</label><label><input type="checkbox" data-check="contrast"> Teks terbaca pada latarnya</label><label><input type="checkbox" data-check="spacing"> Jarak dan alignment konsisten</label><label><input type="checkbox" data-check="focus"> Elemen dekoratif mendukung fokus</label><span id="check-count" aria-live="polite">0 / 4 diperiksa</span></div>
+    </section>
+    <section id="sources" class="sources" aria-labelledby="sources-title"><div><p class="eyebrow">03 / BACA LEBIH JAUH</p><h2 id="sources-title">Rasa visual perlu<br><em>dasar yang kuat.</em></h2><p>Ringkasan untuk pemula, disertai rujukan terbuka. Eksperimen dan brief latihan di sini dibuat khusus untuk belajar.</p></div><div class="source-list"><a href="https://www.figma.com/resource-library/graphic-design-principles/" target="_blank" rel="noopener noreferrer"><span><small>FIGMA · PANDUAN</small>Prinsip desain grafis</span><span>↗</span></a><a href="https://www.figma.com/resource-library/gestalt-principles/" target="_blank" rel="noopener noreferrer"><span><small>FIGMA · PERSEPSI</small>Prinsip Gestalt</span><span>↗</span></a><a href="https://www.canva.com/colors/color-wheel/" target="_blank" rel="noopener noreferrer"><span><small>CANVA · ALAT & TEORI</small>Color wheel & harmoni warna</span><span>↗</span></a><a href="https://www.figma.com/resource-library/typography-in-design/" target="_blank" rel="noopener noreferrer"><span><small>FIGMA · TIPOGRAFI</small>Typography in design</span><span>↗</span></a></div></section>
+  </main>
+  <footer><a class="footer-brand" href="#">design theory<span>®</span></a><span>Belajar melihat. Belajar memilih.</span><span>CANVA + FIGMA / VOL. 01</span></footer>
+  <dialog id="lesson-dialog" aria-labelledby="lesson-title"><div class="dialog-header"><span id="lesson-eyebrow" class="eyebrow"></span><button id="close-dialog" class="close-button" aria-label="Tutup materi">✕</button></div><div class="dialog-title"><h2 id="lesson-title"></h2><p id="lesson-subtitle"></p></div><div class="lesson-tabs" role="tablist" aria-label="Bagian pembelajaran"><button role="tab" id="tab-learn" aria-controls="lesson-panel" aria-selected="true" data-tab="learn">01 Materi & eksperimen</button><button role="tab" id="tab-apply" aria-controls="lesson-panel" aria-selected="false" tabindex="-1" data-tab="apply">02 Terapkan</button><button role="tab" id="tab-quiz" aria-controls="lesson-panel" aria-selected="false" tabindex="-1" data-tab="quiz">03 Uji pemahaman</button></div><div id="lesson-panel" role="tabpanel" aria-labelledby="tab-learn" tabindex="0"></div><div class="dialog-footer"><span id="lesson-status" aria-live="polite"></span><button id="next-lesson" class="primary-button">Lanjut ke penerapan ↗</button></div></dialog>
+  <noscript><div class="no-js">Aktifkan JavaScript untuk membuka materi, eksperimen, dan kuis. Tautan sumber belajar tetap dapat digunakan.</div></noscript>
+</body>
+</html>
