@@ -1,0 +1,11 @@
+/node_modules
+/.next
+/out
+/.vercel
+/coverage
+/qa-artifacts
+/.cache/playwright
+*.log
+.env*
+next-env.d.ts
+*.tsbuildinfo

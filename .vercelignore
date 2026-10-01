@@ -1,0 +1,18 @@
+# Generated locally; Vercel builds from source.
+/node_modules/
+/.next/
+/out/
+/.vercel/
+/.git/
+/.cache/
+/coverage/
+/qa-artifacts/
+*.log
+*.tsbuildinfo
+.env*
+
+# Project documentation is retained in the repository.
+/docs/
+/CURRENT_PROJECT_ANALYSIS.md
+/AGENTS.md
+/README.md

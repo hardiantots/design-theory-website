@@ -1,0 +1,9 @@
+import assert from 'node:assert/strict';
+import {readdir,readFile,stat} from 'node:fs/promises';
+import {gzipSync} from 'node:zlib';
+async function walk(url){const files=[];for(const entry of await readdir(url,{withFileTypes:true})){const next=new URL(entry.name+(entry.isDirectory()?'/':''),url);files.push(...(entry.isDirectory()?await walk(next):[next]));}return files;}
+const source=await walk(new URL('../src/',import.meta.url));for(const file of source){const text=await readFile(file,'utf8');assert.ok(!/serviceWorker\s*\.\s*register|workbox|caches\.open/.test(text),`Unexpected application caching: ${file.pathname}`);}
+const next=await readFile(new URL('../next.config.mjs',import.meta.url),'utf8');assert.ok(next.includes("output: 'export'"));const config=JSON.parse(await readFile(new URL('../vercel.json',import.meta.url),'utf8'));assert.equal(config.outputDirectory,'out');assert.ok(!config.headers,'Keep framework cache defaults');
+const assets=await walk(new URL('../out/_next/static/',import.meta.url));const rows=[];for(const file of assets.filter(file=>file.pathname.endsWith('.js'))){const bytes=await readFile(file);rows.push({file:file.pathname.split('/').at(-1),kb:Math.round(bytes.length/1024),gzipKB:Math.round(gzipSync(bytes).length/1024)});}rows.sort((a,b)=>b.kb-a.kb);
+const publicAssets=await walk(new URL('../public/',import.meta.url));for(const file of publicAssets)assert.ok((await stat(file)).size<500000,`Oversized public asset: ${file.pathname}`);
+console.log(JSON.stringify({mode:'static-export',serviceWorker:false,coreContent:'bundled',cacheHeaders:'framework defaults; local preview revalidates',publicAssets:publicAssets.length,jsChunks:rows.length,largestChunks:rows.slice(0,5)},null,2));

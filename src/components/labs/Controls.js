@@ -1,0 +1,8 @@
+'use client';
+import {useId} from 'react';
+import {useLearning} from '../LearningProvider';
+export function Range({name,value,onChange,min=0,max=100,step=1,unit=''}){const id=useId();return <label className="lab-control" htmlFor={id}><span>{name}<output>{Number(value).toFixed(step<1?1:0)}{unit}</output></span><input id={id} type="range" min={min} max={max} step={step} value={value} onChange={event=>onChange(Number(event.target.value))}/></label>;}
+export function Choice({name,value,onChange,options}){const id=useId();return <label className="lab-control" htmlFor={id}><span id={`${id}-label`}>{name}</span><select id={id} aria-labelledby={`${id}-label`} value={value} onChange={event=>onChange(event.target.value)}>{options.map(([key,label])=><option key={key} value={key}>{label}</option>)}</select></label>;}
+export function ColorInput({name,value,onChange}){return <label className="lab-color-control"><span>{name}</span><input type="color" value={value} onChange={event=>onChange(event.target.value)}/><code>{value.toUpperCase()}</code></label>;}
+export function Toggle({name,value,onChange}){return <label className="lab-toggle"><input type="checkbox" checked={value} onChange={event=>onChange(event.target.checked)}/><span>{name}</span></label>;}
+export function LabFrame({title,onReset,children,controls,footer,className=''}){const {t}=useLearning();return <section className={`rich-lab ${className}`}><div className="lab-topline"><h2>{title}</h2><button className="lab-reset" onClick={onReset}>{t('resetExperiment')} ↺</button></div><div className="lab-workspace"><div className="lab-canvas">{children}{footer&&<div className="lab-reflection">{footer}</div>}</div><div className="lab-inspector">{controls}</div></div></section>;}

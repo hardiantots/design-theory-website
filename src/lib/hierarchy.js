@@ -1,0 +1,4 @@
+export const weakHierarchy={headlineSize:24,headlineWeight:400,imageScale:58,ctaContrast:22,spacing:10,alignment:'mixed'};
+export const strongHierarchy={headlineSize:48,headlineWeight:700,imageScale:75,ctaContrast:85,spacing:30,alignment:'left'};
+export function interpolateHierarchy(value){const p=Math.max(0,Math.min(100,value))/100;const state={};for(const key of ['headlineSize','headlineWeight','imageScale','ctaContrast','spacing'])state[key]=Math.round(weakHierarchy[key]+(strongHierarchy[key]-weakHierarchy[key])*p);state.alignment=p>.5?'left':'mixed';return state;}
+export function simulatedOrder(settings){const scores={headline:settings.headlineSize*(settings.headlineWeight/400),image:settings.imageScale*.8,support:28,cta:settings.ctaContrast*.65,details:18};return Object.entries(scores).sort((a,b)=>b[1]-a[1]).map(([role,weight])=>({role,weight:Math.round(weight)}));}

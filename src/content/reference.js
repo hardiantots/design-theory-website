@@ -1,0 +1,8 @@
+import {bi} from './shared.js';
+export const referenceCards=[
+  {id:'hierarchy',theory:'visual-hierarchy',title:bi('Hierarki Visual','Visual Hierarchy'),checks:[bi('Apa yang perlu dilihat pertama?','What should viewers see first?'),bi('Apa yang perlu dilihat kedua?','What should they see second?'),bi('Adakah elemen yang bersaing tanpa perlu?','Is anything competing unnecessarily?')]},
+  {id:'focus',theory:'focal-point',title:bi('Titik Fokus','Focal Point'),checks:[bi('Adakah elemen dominan yang jelas?','Is there a clear dominant element?'),bi('Apakah dominasinya disengaja?','Is its dominance intentional?'),bi('Apakah elemen lain mendukungnya?','Are other elements supporting it?')]},
+  {id:'type',theory:'typography',title:bi('Tipografi','Typography'),checks:[bi('Apakah teks mudah dibaca?','Is text readable?'),bi('Apakah tingkat pesan cukup berbeda?','Is there enough hierarchy?'),bi('Apakah terlalu banyak font bersaing?','Are too many fonts competing?'),bi('Apakah jarak antarbaris nyaman?','Is line spacing comfortable?')]},
+  {id:'color',theory:'color',title:bi('Warna','Color'),checks:[bi('Apakah teks penting mudah dibaca?','Is important text readable?'),bi('Apakah setiap warna memiliki peran?','Does every color have a role?'),bi('Apakah aksen benar-benar memberi penekanan?','Is the accent color actually creating emphasis?')]},
+  {id:'layout',theory:'alignment',title:bi('Tata Letak','Layout'),checks:[bi('Apakah elemen mengikuti alignment?','Are elements aligned?'),bi('Apakah margin konsisten?','Are margins consistent?'),bi('Apakah jarak direncanakan?','Is spacing intentional?'),bi('Apakah ruang negatif cukup?','Is there enough negative space?')]},
+];

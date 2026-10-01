@@ -1,0 +1,7 @@
+export const clamp=(value,min,max)=>Math.max(min,Math.min(max,Number(value)||0));
+export function hslToHex(h,s,l){h=((h%360)+360)%360;s=clamp(s,0,100)/100;l=clamp(l,0,100)/100;const c=(1-Math.abs(2*l-1))*s,x=c*(1-Math.abs((h/60)%2-1)),m=l-c/2;const [r,g,b]=h<60?[c,x,0]:h<120?[x,c,0]:h<180?[0,c,x]:h<240?[0,x,c]:h<300?[x,0,c]:[c,0,x];return '#'+[r,g,b].map(v=>Math.round((v+m)*255).toString(16).padStart(2,'0')).join('');}
+export function luminance(hex){if(!/^#[a-f\d]{6}$/i.test(hex))throw new Error('Expected a six-digit HEX color');const channels=[1,3,5].map(index=>parseInt(hex.slice(index,index+2),16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return channels[0]*.2126+channels[1]*.7152+channels[2]*.0722;}
+export function contrastRatio(a,b){const x=luminance(a),y=luminance(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05);}
+export const harmonyOffsets={complementary:[0,180],analogous:[-30,0,30],triadic:[0,120,240],split:[0,150,210],mono:[0,0,0,0],tetradic:[0,90,180,270]};
+export function harmonyColors(h,s,l,harmony){const offsets=harmonyOffsets[harmony]||harmonyOffsets.complementary;return offsets.map((offset,index)=>hslToHex(h+offset,s,harmony==='mono'?20+index*20:l));}
+export function buildPalette(h,s,l,harmony){const colors=harmonyColors(h,s,l,harmony);return{primary:colors[0],secondary:colors[1]||colors[0],accent:colors.at(-1),background:hslToHex(h,Math.min(s,15),94),surface:hslToHex(h,Math.min(s,12),99),text:hslToHex(h,Math.min(s,15),12)};}

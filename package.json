@@ -1,12 +1,28 @@
 {
-  "name": "design-theory-studio",
+  "name": "design-theory-city",
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": { "node": ">=20.9.0" },
   "scripts": {
-    "dev": "node scripts/serve.mjs",
+    "dev": "next dev --webpack --port 3001",
     "start": "node scripts/serve.mjs",
-    "build": "node scripts/validate.mjs",
-    "test": "node scripts/validate.mjs"
+    "build": "next build --webpack && node scripts/finalize-export.mjs",
+    "lint": "eslint src scripts next.config.mjs",
+    "test": "node scripts/validate-content.mjs && node scripts/validate-labs.mjs && node scripts/validate-learning.mjs",
+    "test:browser": "node scripts/browser-qa.mjs"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.1",
+    "next": "16.3.7",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.7"
   }
 }
