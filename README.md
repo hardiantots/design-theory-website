@@ -28,7 +28,7 @@ The production preview (`npm start`) serves `out/` at http://127.0.0.1:3001. Use
 
 ## Frontend-only deployment on Vercel
 
-Import this `design-theory` directory as the Vercel project root. Use the included Next.js preset and `npm run build`. Leave the dashboard Output Directory override disabled. `vercel.json` explicitly sets `outputDirectory: null` to use framework detection, including when an older dashboard setting specifies `out`. `next.config.mjs` uses `output: 'export'` and trailing slashes; all theory and section URLs are generated at build time. No API server, database, account system, CMS, runtime authentication, or serverless function is required.
+Import this `design-theory` directory as the Vercel project root. Use the included Next.js preset and `npm run build`. The checked-in `vercel.json` explicitly sets `outputDirectory: ".next"`, matching the Next.js manifest directory and overriding a stale dashboard value of `out`. In the dashboard, use the Next.js preset and either disable Output Directory override or set it to `.next`. `next.config.mjs` uses `output: 'export'` and trailing slashes; all theory and section URLs are generated at build time. No API server, database, account system, CMS, runtime authentication, or serverless function is required.
 
 Next.js generates build manifests in `.next` and static pages in `out`. The Vercel Next.js adapter needs both: overriding its Output Directory to `out` causes the missing `out/routes-manifest.json` error. The build command now verifies the real manifests and every product route before succeeding. Keep `.next` until the deployment builder finishes. See the [official Vercel manifest troubleshooting guide](https://github.com/vercel/vercel/blob/main/errors/now-next-routes-manifest.md).
 
