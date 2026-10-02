@@ -1,6 +1,17 @@
 import assert from 'node:assert/strict';
 import {readFile,access} from 'node:fs/promises';
 import {routes} from '../src/lib/routes.js';
+import nextConfig from '../next.config.mjs';
+const config=JSON.parse(await readFile(new URL('../vercel.json',import.meta.url),'utf8'));
+assert.equal(config.framework,'nextjs');
+assert.equal(nextConfig.output,'export');
+// The Vercel Next.js adapter reads build manifests before collecting static out/.
+// A null override also clears a stale dashboard Output Directory setting.
+assert.equal(config.outputDirectory,null,'Set Vercel outputDirectory to null; out is not the Next.js manifest directory');
+const buildRoot=new URL(`../${nextConfig.distDir||'.next'}/`,import.meta.url);
+const manifest=JSON.parse(await readFile(new URL('routes-manifest.json',buildRoot),'utf8'));
+assert.ok(Array.isArray(manifest.staticRoutes)&&Array.isArray(manifest.dynamicRoutes),'Invalid Next.js routes manifest');
+await access(new URL('prerender-manifest.json',buildRoot));
 const root=new URL('../out/',import.meta.url);
 let files=0;const references=new Set();
 for(const route of ['',...routes]){
@@ -18,4 +29,4 @@ const features={'':'hero-experiment','explore':'relationship-map','playground':'
 Object.assign(features,{'challenges':'visual-activity','challenges/design-detective':'detective-composition','reference':'reference-checklists'});
 for(const route of routes)await access(new URL(`${route}/__next.$c$path.__PAGE__.txt`,root));
 for(const [route,marker] of Object.entries(features)){const html=await readFile(new URL(route?`${route}/index.html`:'index.html',root),'utf8');assert.ok(html.includes(marker),`Missing learning surface ${marker} in ${route||'home'}`);}
-console.log(`PASS: ${files} exported product pages and ${references.size} referenced framework assets. No runtime API required.`);
+console.log(`PASS: Next.js build manifests, Vercel output detection, ${files} exported product pages and ${references.size} referenced framework assets. No runtime API required.`);

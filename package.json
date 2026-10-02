@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next dev --webpack --port 3001",
     "start": "node scripts/serve.mjs",
-    "build": "next build --webpack && node scripts/finalize-export.mjs",
+    "build": "next build --webpack && node scripts/finalize-export.mjs && node scripts/verify-export.mjs",
     "lint": "eslint src scripts next.config.mjs",
     "test": "node scripts/validate-content.mjs && node scripts/validate-labs.mjs && node scripts/validate-learning.mjs",
     "test:browser": "node scripts/browser-qa.mjs"

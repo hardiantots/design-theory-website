@@ -47,7 +47,11 @@ Inter normal and italic variable WOFF2 files are bundled through `next/font/loca
 
 ## Deployment and environment
 
-`next.config.mjs` uses `output: 'export'` and `trailingSlash: true`; route parameters are generated at build time. `vercel.json` uses the Next.js preset, `npm run build` and output directory `out`. There is no runtime API/database/authentication service. Vercel publishing remains deferred at the user's explicit request to continue locally. Framework cache defaults are preserved.
+`next.config.mjs` uses `output: 'export'` and `trailingSlash: true`; route parameters are generated at build time. `vercel.json` uses the Next.js preset, `npm run build` and `outputDirectory: null` for framework output detection. Next.js manifests remain in `.next`; static pages are exported to `out`. There is no runtime API/database/authentication service. Framework cache defaults are preserved.
+
+The user reported a Vercel deployment failure looking for `out/routes-manifest.json`. The former `outputDirectory: "out"` override caused the Next.js adapter to look in the static export directory instead of `.next`. That override is now reset to `null`, and the build command runs the export verifier automatically, checking the actual routes/prerender manifests plus all product pages and assets. Dashboard Output Directory should be left at its default (override disabled). Cloud deployment success is not inferred from local build results.
+
+After this fix, a fresh local production build, lint and frontend audit passed. The generated `.next/routes-manifest.json` is valid version 3, the prerender manifest exists, and all thirty-six product pages and twelve referenced framework assets passed the automatic build check. The regenerated `.next` directory is retained for the deployment adapter. Redeploy the updated source; rerunning an older deployment revision will retain its old configuration. No cloud redeployment was performed in this verification.
 
 Configuration follows installed Next.js documentation and the official [static export guide](https://nextjs.org/docs/app/guides/static-exports), [Vercel build configuration](https://vercel.com/docs/builds/configure-a-build) and [Vercel ignore guide](https://vercel.com/docs/deployments/vercel-ignore).
 
